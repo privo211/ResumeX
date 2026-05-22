@@ -7,12 +7,12 @@ export const env = createEnv({
    * isn't built with invalid env vars.
    */
   server: {
-    AUTH_SECRET:
+    NEXTAUTH_SECRET:
       process.env.NODE_ENV === "production"
         ? z.string()
         : z.string().optional(),
     AUTH_DISCORD_ID: z.string(),
-    AUTH_DISCORD_PUBLIC_KEY:z.string(),
+    AUTH_DISCORD_SECRET: z.string(),
     // Discord OAuth2 (for NextAuth)
     DISCORD_CLIENT_ID:     z.string(),
     DISCORD_CLIENT_SECRET: z.string(),
@@ -37,9 +37,9 @@ export const env = createEnv({
    * middlewares) or client-side so we need to destruct manually.
    */
   runtimeEnv: {
-    AUTH_SECRET: process.env.AUTH_SECRET,
+    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     AUTH_DISCORD_ID: process.env.AUTH_DISCORD_ID,
-    AUTH_DISCORD_PUBLIC_KEY:  process.env.AUTH_DISCORD_PUBLIC_KEY,
+    AUTH_DISCORD_SECRET:  process.env.AUTH_DISCORD_SECRET,
     DISCORD_CLIENT_ID:        process.env.DISCORD_CLIENT_ID,
     DISCORD_CLIENT_SECRET:    process.env.DISCORD_CLIENT_SECRET,
     DATABASE_URL: process.env.DATABASE_URL,
