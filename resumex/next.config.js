@@ -3,7 +3,6 @@
 const isProd = process.env.NODE_ENV === "production";
 
 const nextConfig = {
-  assetPrefix: isProd ? "/COSC-4P02-PROJECT/" : "",
   images: {
     unoptimized: true, 
   },
