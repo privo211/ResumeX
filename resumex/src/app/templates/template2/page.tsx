@@ -1,11 +1,9 @@
 // Import core React hooks and libraries
-import React from "react"; // Needed for JSX rendering
-import { useState, useEffect } from "react"; // React hooks for state and lifecycle
+import React, { useState, useEffect, useRef } from "react"; // Needed for JSX, state, lifecycle, and DOM refs
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai"; // Icon components used in buttons
 import { FiDownload } from "react-icons/fi"; // Download icon for PDF export
 import html2canvas from "html2canvas"; // Used to capture resume as a canvas
 import jsPDF from "jspdf"; // Library to export resume as a PDF file
-import { useRef} from "react"; // For referencing DOM nodes like resume container
 
 // Generates a user-specific key for localStorage using the logged-in user's name.
 // Falls back to "guest" if no user is found.
