@@ -1,5 +1,7 @@
 {
-  "buildCommand": "cd resumex && npm run build",
-  "outputDirectory": "resumex/.next",
-  "installCommand": "cd resumex && npm install"
+  "framework": "nextjs",
+  "rootDirectory": "resumex",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install"
 }
