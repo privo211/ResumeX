@@ -5,7 +5,7 @@ Welcome to the official repository for our **COSC 4P02 Group Project**: ResumeX,
 ---
 
 ## 🌐 Project Website  
-🔗 https://resumex.top/
+🔗 [[https://resumex.top/](https://resumex-demo.vercel.app/)]
 
 ---
 
