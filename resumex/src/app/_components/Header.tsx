@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+
 import { useSession, signOut } from "next-auth/react";
 
 interface UserData {
@@ -47,12 +47,11 @@ const Header = () => {
     <header className="bg-gray-900 text-white sticky top-0 z-50 shadow-lg">
       <div className="max-w-8xl mx-auto flex justify-between items-center px-8 h-20">
         <Link href="/" className="flex items-center">
-          <Image
+          <img
             src="/transparent_white_main_logo.png"
             alt="ResumeX Logo"
             width={160}
             height={160}
-            priority={true}
             className="cursor-pointer"
           />
         </Link>

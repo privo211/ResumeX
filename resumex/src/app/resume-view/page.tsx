@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
-import { supabase } from "~/lib/supabaseClient";
+import { getSupabase } from "~/lib/supabaseClient";
 
 const Template1 = dynamic(() => import("../templates/template1/page"), { ssr: false });
 const Template2 = dynamic(() => import("../templates/template2/page"), { ssr: false });
@@ -15,7 +15,7 @@ const templateMap: Record<string, any> = {
     template3: Template3,
 };
 
-export default function ResumeViewPage() {
+function ResumeViewContent() {
     const searchParams = useSearchParams();
     const resumeId = searchParams.get("id");
 
@@ -27,7 +27,7 @@ export default function ResumeViewPage() {
         const fetchResume = async () => {
             if (!resumeId) return;
 
-            const { data, error } = await supabase
+            const { data, error } = await getSupabase()
                 .from("resumes")
                 .select("*")
                 .eq("id", resumeId)
@@ -57,4 +57,12 @@ export default function ResumeViewPage() {
             </div>
         </div>
     );
+}
+
+export default function ResumeViewPage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading resume...</div>}>
+      <ResumeViewContent />
+    </Suspense>
+  );
 }

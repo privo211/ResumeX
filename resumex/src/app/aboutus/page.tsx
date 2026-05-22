@@ -19,7 +19,7 @@ export default function AboutUs() {
   const cursorControls = useAnimation()
   const [aiTriggered, setAiTriggered] = useState(false)
   const [isClicking, setIsClicking] = useState(false)
-  const buttonRef = useRef<HTMLButtonElement>(null)
+  const buttonRef = useRef<HTMLDivElement>(null)
 
   // Cursor Animation Loop
   useEffect(() => {

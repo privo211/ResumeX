@@ -7,7 +7,7 @@ import Link from "next/link";
 import Header from "../_components/Header";
 import Footer from "../_components/Footer";
 import FAQ from "./faq";
-import Image from "next/image";
+
 
 // Stripe checkout function
 async function handleCheckout(priceId: string, setLoading: (value: boolean) => void) {
@@ -128,7 +128,7 @@ export default function PricingPage() {
                 "Valid for 7 days only",
               ].map((text, idx) => (
                 <li key={idx} className="flex items-start gap-3">
-                  <Image src="/check.png" alt="tick" width={20} height={20} />
+                  <img src="/check.png" alt="tick" width={20} height={20} />
                   <span>{text}</span>
                 </li>
               ))}
@@ -179,7 +179,7 @@ export default function PricingPage() {
                 "Export as PDF",
               ].map((text, idx) => (
                 <li key={idx} className="flex items-start gap-3">
-                  <Image src="/check.png" alt="tick" width={20} height={20} />
+                  <img src="/check.png" alt="tick" width={20} height={20} />
                   <span>{text}</span>
                 </li>
               ))}
@@ -202,10 +202,10 @@ export default function PricingPage() {
       <div className="text-center py-10">
         <p className="text-gray-600 font-semibold">We accept:</p>
         <div className="mt-4 flex justify-center space-x-4">
-          <Image src="/mastercard.png" alt="Mastercard" width={50} height={30} />
-          <Image src="/visa.png" alt="Visa" width={50} height={30} />
-          <Image src="/paypal.png" alt="PayPal" width={50} height={30} />
-          <Image src="/aMEX.png" alt="Amex" width={50} height={30} />
+          <img src="/mastercard.png" alt="Mastercard" width={50} height={30} />
+          <img src="/visa.png" alt="Visa" width={50} height={30} />
+          <img src="/paypal.png" alt="PayPal" width={50} height={30} />
+          <img src="/aMEX.png" alt="Amex" width={50} height={30} />
         </div>
       </div>
 

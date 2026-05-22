@@ -1,7 +1,8 @@
+"use client";
+
 // Import core React hooks and libraries
 import React, { useState, useEffect, useRef } from "react"; // Needed for JSX, state, lifecycle, and DOM refs
-import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai"; // Icon components used in buttons
-import { FiDownload } from "react-icons/fi"; // Download icon for PDF export
+import { AiOutlineCheck, AiOutlineClose, FiDownload } from "~/lib/icons";
 import html2canvas from "html2canvas"; // Used to capture resume as a canvas
 import jsPDF from "jspdf"; // Library to export resume as a PDF file
 
@@ -13,7 +14,7 @@ function getUserKey(key: string) {
   return `${userId}_template2_${key}`;
 }
 
-export default function Template2Page({ data, isPublicView = false }) {
+export default function Template2Page({ data, isPublicView = false }: any) {
   //for few seconds pop up
   const resumeRef = React.useRef<HTMLDivElement>(null);
 
@@ -446,7 +447,7 @@ export default function Template2Page({ data, isPublicView = false }) {
                             value={edu.year}
                             onChange={(e) => {
                               const updated = [...tempEducation];
-                              updated[index] = { ...updated[index], year: e.target.value };
+                              updated[index]! = { ...updated[index]!, year: e.target.value };
                               setTempEducation(updated);
                             }}
                         />
@@ -457,7 +458,7 @@ export default function Template2Page({ data, isPublicView = false }) {
                             value={edu.school}
                             onChange={(e) => {
                               const updated = [...tempEducation];
-                              updated[index] = { ...updated[index], school: e.target.value };
+                              updated[index]! = { ...updated[index]!, school: e.target.value };
                               setTempEducation(updated);
                             }}
                         />
@@ -468,7 +469,7 @@ export default function Template2Page({ data, isPublicView = false }) {
                             value={edu.degree}
                             onChange={(e) => {
                               const updated = [...tempEducation];
-                              updated[index] = { ...updated[index], degree: e.target.value };
+                              updated[index]! = { ...updated[index]!, degree: e.target.value };
                               setTempEducation(updated);
                             }}
                         />
@@ -566,7 +567,7 @@ export default function Template2Page({ data, isPublicView = false }) {
                             value={skill}
                             onChange={(e) => {
                               const updated = [...tempSkills];
-                              updated[index] = e.target.value;
+                              updated[index]! = e.target.value;
                               setTempSkills(updated);
                             }}
                         />
@@ -774,7 +775,7 @@ export default function Template2Page({ data, isPublicView = false }) {
                             value={exp.company}
                             onChange={(e) => {
                               const updated = [...tempExperience];
-                              updated[i].company = e.target.value;
+                              updated[i]!.company = e.target.value;
                               setTempExperience(updated);
                             }}
                         />
@@ -785,7 +786,7 @@ export default function Template2Page({ data, isPublicView = false }) {
                             value={exp.role}
                             onChange={(e) => {
                               const updated = [...tempExperience];
-                              updated[i].role = e.target.value;
+                              updated[i]!.role = e.target.value;
                               setTempExperience(updated);
                             }}
                         />
@@ -796,7 +797,7 @@ export default function Template2Page({ data, isPublicView = false }) {
                             value={exp.years}
                             onChange={(e) => {
                               const updated = [...tempExperience];
-                              updated[i].years = e.target.value;
+                              updated[i]!.years = e.target.value;
                               setTempExperience(updated);
                             }}
                         />
@@ -809,7 +810,7 @@ export default function Template2Page({ data, isPublicView = false }) {
                                 value={b}
                                 onChange={(e) => {
                                   const updated = [...tempExperience];
-                                  updated[i].bullets[j] = e.target.value;
+                                  updated[i]!.bullets[j] = e.target.value;
                                   setTempExperience(updated);
                                 }}
                             />

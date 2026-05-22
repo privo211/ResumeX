@@ -5,27 +5,23 @@ import { useState, useRef } from "react"
 import Header from "../_components/Header"
 import Footer from "../_components/Footer"
 
-// Add type declaration for html2pdf.js
-declare module "html2pdf.js" {
-  interface Html2PdfOptions {
-    margin?: number
-    filename?: string
-    image?: { type: string; quality: number }
-    html2canvas?: { scale: number }
-    jsPDF?: { unit: string; format: string; orientation: string }
-  }
+interface Html2PdfOptions {
+  margin?: number
+  filename?: string
+  image?: { type: string; quality: number }
+  html2canvas?: { scale: number }
+  jsPDF?: { unit: string; format: string; orientation: string }
+}
 
-  interface Html2PdfResult {
-    from: (element: HTMLElement) => {
-      set: (options: Html2PdfOptions) => {
-        save: () => void
-      }
+interface Html2PdfResult {
+  from: (element: HTMLElement) => {
+    set: (options: Html2PdfOptions) => {
+      save: () => void
     }
   }
-
-  function html2pdf(): Html2PdfResult
-  export default html2pdf
 }
+
+declare function html2pdf(): Html2PdfResult
 
 interface ResumeData {
   name: string
@@ -111,7 +107,9 @@ const ResumePage = () => {
     const newOrder = [...sectionOrder]
     const targetIndex = direction === "up" ? index - 1 : index + 1
     if (targetIndex >= 0 && targetIndex < sectionOrder.length) {
-      ;[newOrder[index], newOrder[targetIndex]] = [newOrder[targetIndex], newOrder[index]]
+      const temp = newOrder[index]!
+      newOrder[index] = newOrder[targetIndex]!
+      newOrder[targetIndex] = temp
       setSectionOrder(newOrder)
     }
   }
@@ -176,7 +174,7 @@ const ResumePage = () => {
   const deleteEntry = (section: ResumeSection, index: number, customIndex?: number) => {
     if (section === "customSections" && typeof customIndex === "number") {
       const updated = [...resumeData.customSections]
-      const items = updated[customIndex]?.items
+      const items = updated[customIndex]!?.items
       if (items) {
         items.splice(index, 1)
         setResumeData({ ...resumeData, customSections: updated })
@@ -374,7 +372,7 @@ const ResumePage = () => {
                   value={exp.jobTitle}
                   onChange={(e) => {
                     const updated = [...resumeData.experience]
-                    updated[idx].jobTitle = e.target.value
+                    updated[idx]!.jobTitle = e.target.value
                     setResumeData({ ...resumeData, experience: updated })
                   }}
                 />
@@ -384,7 +382,7 @@ const ResumePage = () => {
                   value={exp.company}
                   onChange={(e) => {
                     const updated = [...resumeData.experience]
-                    updated[idx].company = e.target.value
+                    updated[idx]!.company = e.target.value
                     setResumeData({ ...resumeData, experience: updated })
                   }}
                 />
@@ -394,7 +392,7 @@ const ResumePage = () => {
                   value={exp.from}
                   onChange={(e) => {
                     const updated = [...resumeData.experience]
-                    updated[idx].from = e.target.value
+                    updated[idx]!.from = e.target.value
                     setResumeData({ ...resumeData, experience: updated })
                   }}
                 />
@@ -404,7 +402,7 @@ const ResumePage = () => {
                   value={exp.to}
                   onChange={(e) => {
                     const updated = [...resumeData.experience]
-                    updated[idx].to = e.target.value
+                    updated[idx]!.to = e.target.value
                     setResumeData({ ...resumeData, experience: updated })
                   }}
                 />
@@ -414,7 +412,7 @@ const ResumePage = () => {
                   value={exp.description}
                   onChange={(e) => {
                     const updated = [...resumeData.experience]
-                    updated[idx].description = e.target.value
+                    updated[idx]!.description = e.target.value
                     setResumeData({ ...resumeData, experience: updated })
                   }}
                 />
@@ -426,7 +424,7 @@ const ResumePage = () => {
                     }))
                     const newDesc = await callAI("experience", exp.description)
                     const updated = [...resumeData.experience]
-                    updated[idx].description = newDesc
+                    updated[idx]!.description = newDesc
                     setResumeData({ ...resumeData, experience: updated })
                     setAiLoading((prev) => ({
                       ...prev,
@@ -488,7 +486,7 @@ const ResumePage = () => {
                   value={edu.degree}
                   onChange={(e) => {
                     const updated = [...resumeData.education]
-                    updated[idx].degree = e.target.value
+                    updated[idx]!.degree = e.target.value
                     setResumeData({ ...resumeData, education: updated })
                   }}
                 />
@@ -498,7 +496,7 @@ const ResumePage = () => {
                   value={edu.school}
                   onChange={(e) => {
                     const updated = [...resumeData.education]
-                    updated[idx].school = e.target.value
+                    updated[idx]!.school = e.target.value
                     setResumeData({ ...resumeData, education: updated })
                   }}
                 />
@@ -508,7 +506,7 @@ const ResumePage = () => {
                   value={edu.year}
                   onChange={(e) => {
                     const updated = [...resumeData.education]
-                    updated[idx].year = e.target.value
+                    updated[idx]!.year = e.target.value
                     setResumeData({ ...resumeData, education: updated })
                   }}
                 />
@@ -522,7 +520,7 @@ const ResumePage = () => {
               onClick={() =>
                 setResumeData({
                   ...resumeData,
-                  education: [...resumeData.education, { degree: "", school: "", year: "" }],
+                  education: [...resumeData.education, { degree: "", school: "", year: "", from: "", to: "" }],
                 })
               }
             >
@@ -567,7 +565,7 @@ const ResumePage = () => {
                 value={section.heading}
                 onChange={(e) => {
                   const updated = [...resumeData.customSections]
-                  updated[sIdx].heading = e.target.value
+                  updated[sIdx]!.heading = e.target.value
                   setResumeData({ ...resumeData, customSections: updated })
                 }}
               />
@@ -579,7 +577,7 @@ const ResumePage = () => {
                     value={item.title}
                     onChange={(e) => {
                       const updated = [...resumeData.customSections]
-                      updated[sIdx].items[idx].title = e.target.value
+                      updated[sIdx]!.items[idx]!.title = e.target.value
                       setResumeData({ ...resumeData, customSections: updated })
                     }}
                   />
@@ -589,7 +587,7 @@ const ResumePage = () => {
                     value={item.description}
                     onChange={(e) => {
                       const updated = [...resumeData.customSections]
-                      updated[sIdx].items[idx].description = e.target.value
+                      updated[sIdx]!.items[idx]!.description = e.target.value
                       setResumeData({ ...resumeData, customSections: updated })
                     }}
                   />
@@ -605,7 +603,7 @@ const ResumePage = () => {
                 className="mt-2 text-sm text-indigo-700 hover:underline"
                 onClick={() => {
                   const updated = [...resumeData.customSections]
-                  updated[sIdx].items.push({ title: "", description: "" })
+                  updated[sIdx]!.items.push({ title: "", description: "" })
                   setResumeData({ ...resumeData, customSections: updated })
                 }}
               >
@@ -640,7 +638,7 @@ const ResumePage = () => {
         </div>
 
         {/* Right Preview Panel */}
-        <div ref={resumeRef} className={`bg-white p-6 rounded-xl shadow h-fit space-y-6 ${themeClasses[theme]}`}>
+        <div ref={resumeRef} className={`bg-white p-6 rounded-xl shadow h-fit space-y-6 ${themeClasses[theme as keyof typeof themeClasses]}`}>
           <div className="text-center">
             <h1 className="text-3xl font-bold">{resumeData.name}</h1>
             <p className="text-sm text-gray-600">
@@ -710,7 +708,7 @@ const ResumePage = () => {
               default:
                 // Handle custom sections
                 if (sectionKey.startsWith("custom-")) {
-                  const sIdx = Number.parseInt(sectionKey.split("-")[1])
+                  const sIdx = Number.parseInt(sectionKey.split("-")[1]!)
                   const section = resumeData.customSections[sIdx]
                   if (!section) return null
 

@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 
-import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
+import { AiOutlineCheck, AiOutlineClose, FiDownload } from "~/lib/icons";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { FiDownload } from "react-icons/fi";
+
 
 // Returns a unique localStorage key based on the user and current template
 function getUserKey(key: string) {
@@ -15,7 +15,7 @@ function getUserKey(key: string) {
 }
 
 // Main component for Template 3
-export default function Template3Page({ isPublicView = false }: { isPublicView?: boolean }) {
+export default function Template3Page({ isPublicView = false }: any) {
   // Show loading popup for 2 seconds when the page mounts
   const [showPopup, setShowPopup] = useState(true);
 
@@ -297,7 +297,7 @@ export default function Template3Page({ isPublicView = false }: { isPublicView?:
 
   const handleEducationChange = (index: number, field: string, value: string) => {
     const updated = [...tempEducationList];
-    updated[index] = { ...updated[index], [field]: value };
+    updated[index]! = { ...updated[index]!, [field]: value };
     setTempEducationList(updated);
   };
 
@@ -346,7 +346,7 @@ export default function Template3Page({ isPublicView = false }: { isPublicView?:
 
   const handleProjectChange = (index: number, field: string, value: string) => {
     const updated = [...tempProjectList];
-    updated[index] = { ...updated[index], [field]: value };
+    updated[index]! = { ...updated[index]!, [field]: value };
     setTempProjectList(updated);
   };
 
@@ -394,7 +394,7 @@ export default function Template3Page({ isPublicView = false }: { isPublicView?:
 
   const handleCertChange = (index: number, field: string, value: string) => {
     const updated = [...tempCertificationList];
-    updated[index] = { ...updated[index], [field]: value };
+    updated[index]! = { ...updated[index]!, [field]: value };
     setTempCertificationList(updated);
   };
 
@@ -492,7 +492,7 @@ export default function Template3Page({ isPublicView = false }: { isPublicView?:
 
   const handleWorkChange = (index: number, field: string, value: string) => {
     const updated = [...tempWorkList];
-    updated[index] = { ...updated[index], [field]: value };
+    updated[index]! = { ...updated[index]!, [field]: value };
     setTempWorkList(updated);
   };
 
@@ -547,7 +547,7 @@ export default function Template3Page({ isPublicView = false }: { isPublicView?:
 
   const handleAwardChange = (index: number, field: string, value: string) => {
     const updated = [...tempAwardList];
-    updated[index] = { ...updated[index], [field]: value };
+    updated[index]! = { ...updated[index]!, [field]: value };
     setTempAwardList(updated);
   };
 
@@ -1159,7 +1159,7 @@ export default function Template3Page({ isPublicView = false }: { isPublicView?:
                             value={item}
                             onChange={(e) => {
                               const updated = [...tempInterestsList];
-                              updated[idx] = e.target.value;
+                              updated[idx]! = e.target.value;
                               setTempInterestsList(updated);
                             }}
                           />
@@ -1253,7 +1253,7 @@ export default function Template3Page({ isPublicView = false }: { isPublicView?:
                             <>
                               <input
                                   type="text"
-                                  value={tempEducationList[index].degree}
+                                  value={tempEducationList[index]!.degree}
                                   onChange={(e) =>
                                       handleEducationChange(index, "degree", e.target.value)
                                   }
@@ -1261,7 +1261,7 @@ export default function Template3Page({ isPublicView = false }: { isPublicView?:
                               />
                               <input
                                   type="text"
-                                  value={tempEducationList[index].school}
+                                  value={tempEducationList[index]!.school}
                                   onChange={(e) =>
                                       handleEducationChange(index, "school", e.target.value)
                                   }
@@ -1269,7 +1269,7 @@ export default function Template3Page({ isPublicView = false }: { isPublicView?:
                               />
                               <input
                                   type="text"
-                                  value={tempEducationList[index].year}
+                                  value={tempEducationList[index]!.year}
                                   onChange={(e) =>
                                       handleEducationChange(index, "year", e.target.value)
                                   }
@@ -1277,7 +1277,7 @@ export default function Template3Page({ isPublicView = false }: { isPublicView?:
                               />
                               <input
                                   type="text"
-                                  value={tempEducationList[index].location}
+                                  value={tempEducationList[index]!.location}
                                   onChange={(e) =>
                                       handleEducationChange(index, "location", e.target.value)
                                   }
@@ -1362,7 +1362,7 @@ export default function Template3Page({ isPublicView = false }: { isPublicView?:
                               <input
                                   type="text"
                                   placeholder="Project Title (e.g., Market Expansion Strategy)"
-                                  value={tempProjectList[index].title}
+                                  value={tempProjectList[index]!.title}
                                   onChange={(e) =>
                                       handleProjectChange(index, "title", e.target.value)
                                   }
@@ -1371,7 +1371,7 @@ export default function Template3Page({ isPublicView = false }: { isPublicView?:
                               <textarea
                                   rows={2}
                                   placeholder="Description 1 (e.g., Led a 4-member team...)"
-                                  value={tempProjectList[index].description1}
+                                  value={tempProjectList[index]!.description1}
                                   onChange={(e) =>
                                       handleProjectChange(index, "description1", e.target.value)
                                   }
@@ -1380,7 +1380,7 @@ export default function Template3Page({ isPublicView = false }: { isPublicView?:
                               <textarea
                                   rows={2}
                                   placeholder="Description 2 (e.g., Conducted market research...)"
-                                  value={tempProjectList[index].description2}
+                                  value={tempProjectList[index]!.description2}
                                   onChange={(e) =>
                                       handleProjectChange(index, "description2", e.target.value)
                                   }
@@ -1389,7 +1389,7 @@ export default function Template3Page({ isPublicView = false }: { isPublicView?:
                               <input
                                   type="text"
                                   placeholder="Tools (e.g., SWOT, Excel, Canva)"
-                                  value={tempProjectList[index].tools}
+                                  value={tempProjectList[index]!.tools}
                                   onChange={(e) =>
                                       handleProjectChange(index, "tools", e.target.value)
                                   }
@@ -1526,7 +1526,7 @@ export default function Template3Page({ isPublicView = false }: { isPublicView?:
                           value={skill}
                           onChange={(e) => {
                             const updated = [...tempSoftSkills];
-                            updated[index] = e.target.value;
+                            updated[index]! = e.target.value;
                             setTempSoftSkills(updated);
                           }}
                         />
@@ -1602,7 +1602,7 @@ export default function Template3Page({ isPublicView = false }: { isPublicView?:
                           value={lang}
                           onChange={(e) => {
                             const updated = [...tempLanguages];
-                            updated[index] = e.target.value;
+                            updated[index]! = e.target.value;
                             setTempLanguages(updated);
                           }}
                         />
@@ -1681,35 +1681,35 @@ export default function Template3Page({ isPublicView = false }: { isPublicView?:
                               <input
                                   type="text"
                                   placeholder="Job Title (e.g., Marketing Intern)"
-                                  value={tempWorkList[index].title}
+                                  value={tempWorkList[index]!.title}
                                   onChange={(e) => handleWorkChange(index, "title", e.target.value)}
                                   className="text-sm font-semibold border-b border-gray-300 w-full"
                               />
                               <input
                                   type="text"
                                   placeholder="Company Name (e.g., Nestlé Canada)"
-                                  value={tempWorkList[index].company}
+                                  value={tempWorkList[index]!.company}
                                   onChange={(e) => handleWorkChange(index, "company", e.target.value)}
                                   className="text-sm text-gray-600 border-b border-gray-300 w-full"
                               />
                               <input
                                   type="text"
                                   placeholder="Location (e.g., Toronto, ON)"
-                                  value={tempWorkList[index].location}
+                                  value={tempWorkList[index]!.location}
                                   onChange={(e) => handleWorkChange(index, "location", e.target.value)}
                                   className="text-sm text-gray-600 border-b border-gray-300 w-full"
                               />
                               <input
                                   type="text"
                                   placeholder="Duration (e.g., May 2023 – Aug 2023)"
-                                  value={tempWorkList[index].duration}
+                                  value={tempWorkList[index]!.duration}
                                   onChange={(e) => handleWorkChange(index, "duration", e.target.value)}
                                   className="text-sm text-gray-600 border-b border-gray-300 w-full"
                               />
                               <textarea
                                   rows={2}
                                   placeholder="Job Description (e.g., Assisted in launching a new product...)"
-                                  value={tempWorkList[index].description}
+                                  value={tempWorkList[index]!.description}
                                   onChange={(e) => handleWorkChange(index, "description", e.target.value)}
                                   className="text-sm text-gray-600 border-b border-gray-300 w-full"
                               />
@@ -1813,7 +1813,7 @@ export default function Template3Page({ isPublicView = false }: { isPublicView?:
                               <input
                                   type="text"
                                   placeholder="Award Title (e.g., Dean’s Honour List)"
-                                  value={tempAwardList[index].title}
+                                  value={tempAwardList[index]!.title}
                                   onChange={(e) =>
                                       handleAwardChange(index, "title", e.target.value)
                                   }
@@ -1822,7 +1822,7 @@ export default function Template3Page({ isPublicView = false }: { isPublicView?:
                               <input
                                   type="text"
                                   placeholder="Organization (e.g., Brock University)"
-                                  value={tempAwardList[index].org}
+                                  value={tempAwardList[index]!.org}
                                   onChange={(e) =>
                                       handleAwardChange(index, "org", e.target.value)
                                   }
@@ -1831,7 +1831,7 @@ export default function Template3Page({ isPublicView = false }: { isPublicView?:
                               <input
                                   type="text"
                                   placeholder="Date & Location (e.g., 2023 | Toronto, ON)"
-                                  value={tempAwardList[index].dateLocation}
+                                  value={tempAwardList[index]!.dateLocation}
                                   onChange={(e) =>
                                       handleAwardChange(index, "dateLocation", e.target.value)
                                   }
@@ -1840,7 +1840,7 @@ export default function Template3Page({ isPublicView = false }: { isPublicView?:
                               <textarea
                                   rows={2}
                                   placeholder="Award Description (e.g., Selected among top 5 teams...)"
-                                  value={tempAwardList[index].description}
+                                  value={tempAwardList[index]!.description}
                                   onChange={(e) =>
                                       handleAwardChange(index, "description", e.target.value)
                                   }

@@ -1,5 +1,5 @@
 "use client"; // This marks the file as a Client Component in Next.js
-import React from 'react';
+import React, { Suspense } from 'react';
 // Layout component
 import Header from "../_components/Header";
 // React hooks
@@ -10,10 +10,10 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { jsPDF } from "jspdf";
 // Icons
-import { AiOutlineLeft, AiOutlineRight, AiOutlineSync, AiOutlineCheck, AiOutlineUp, AiOutlineDown } from "react-icons/ai";
+import { AiOutlineCheck, AiOutlineLeft, AiOutlineRight, AiOutlineSync, AiOutlineUp, AiOutlineDown } from "~/lib/icons";
 // PDF and screenshot utility
 import html2canvas from "html2canvas";
-import { supabase } from "~/lib/supabaseClient";
+import { getSupabase } from "~/lib/supabaseClient";
 import { v4 as uuidv4 } from "uuid";
 
 // Dynamically import resume templates so they are loaded only when needed
@@ -22,7 +22,10 @@ const Template2Page = dynamic(() => import("../templates/template2/page"));
 const Template3Page = dynamic(() => import("../templates/template3/page"));
 
 // Define available templates with name and component reference
-const templates = {
+const templates: Record<string, {
+  name: string;
+  component: React.ComponentType<any>;
+}> = {
   template1: {
     name: "Modern Clean Resume",
     component: Template1Page,
@@ -64,7 +67,7 @@ function getLoggedInUserId() {
  * - Supports generating a public sharable link via `copyToClipboard`.
  */
 // Main component for the free resume builder page
-export default function FreeResume() {
+function FreeResumeContent() {
   const searchParams = useSearchParams(); // Get query parameters from the URL
   const template = searchParams.get("template") || "template1"; // Get selected template from URL or default to template1
   // Store the last used template in localStorage to preserve user preference
@@ -74,7 +77,7 @@ export default function FreeResume() {
     }
   }, [template]);
 
-  const selectedTemplate = templates[template] || templates["template1"]; // Get the selected template configuration
+  const selectedTemplate = (templates[template] ?? templates["template1"])!; // Get the selected template configuration
   // UI & state refs
   const [userId, setUserId] = useState<string | null>(null);
   const resumeRef = useRef<HTMLDivElement>(null);
@@ -297,7 +300,7 @@ export default function FreeResume() {
 
   useEffect(() => {
     const fetchResumes = async () => {
-      const { data, error } = await supabase.from("resumes").select("*");
+      const { data, error } = await getSupabase().from("resumes").select("*");
       console.log("Fetched resumes:", data);
       if (error) console.error("Error fetching resumes:", error);
     };
@@ -397,5 +400,13 @@ export default function FreeResume() {
           </div>
         </main>
       </div>
+  );
+}
+
+export default function FreeResume() {
+  return (
+    <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading...</div>}>
+      <FreeResumeContent />
+    </Suspense>
   );
 }

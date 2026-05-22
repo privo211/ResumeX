@@ -1,9 +1,9 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
+import { AiOutlineCheck, AiOutlineClose } from "~/lib/icons";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { FiDownload } from "react-icons/fi";
+
 
 function getUserKey(key: string) {
   const userData = localStorage.getItem("userData");
@@ -286,7 +286,7 @@ export default function Template1Page() {
                   title="Download PDF"
                   className="text-blue-600 hover:text-blue-800 transition text-3xl"
               >
-                <FiDownload />
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               </button>
             </div>
         )}
@@ -407,7 +407,7 @@ export default function Template1Page() {
                           />
                           <button
                               onClick={() => {
-                                const updated = tempExperience.filter((_, i) => i !== index);
+                                const updated = tempExperience.filter((_: unknown, i: number) => i !== index);
                                 setTempExperience(updated);
                               }}
                               className="absolute top-2 right-2 text-red-600 hover:text-red-800"
@@ -516,7 +516,7 @@ export default function Template1Page() {
                             />
                             <button
                                 onClick={() => {
-                                  const updated = tempEducation.filter((_, i) => i !== index);
+                                  const updated = tempEducation.filter((_: unknown, i: number) => i !== index);
                                   setTempEducation(updated);
                                 }}
                                 className="absolute top-2 right-2 text-red-600 hover:text-red-800"
@@ -616,7 +616,7 @@ export default function Template1Page() {
                             />
                             <button
                                 onClick={() => {
-                                  const updated = tempProjects.filter((_, i) => i !== index);
+                                  const updated = tempProjects.filter((_: unknown, i: number) => i !== index);
                                   setTempProjects(updated);
                                 }}
                                 className="absolute top-2 right-2 text-red-600 hover:text-red-800"

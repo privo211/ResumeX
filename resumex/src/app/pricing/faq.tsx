@@ -11,6 +11,7 @@ export default function FAQ() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
+        if (!entry) return;
         if (entry.isIntersecting) {
           setIsVisible(true);
         }

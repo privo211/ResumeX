@@ -94,6 +94,7 @@ export function RegisterForm({ className, ...props }: React.ComponentPropsWithou
         // If user is already logged in, show logout prompt instead of register form.
         <div className="flex flex-col gap-6">
           <p className="text-center">You are already logged in as {user.name}</p>
+          {/* @ts-expect-error - ForwardRefExoticComponent incompatible with Next.js 15 JSX checking */}
           <Button onClick={handleLogout}>Logout</Button>
         </div>
       ) : (

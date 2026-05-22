@@ -1,7 +1,5 @@
 'use client'
 
-import Image from 'next/image'
-import Link from 'next/link'
 import Header from '../_components/Header'
 import Footer from '../_components/Footer'
 import { useState, useEffect } from 'react'
@@ -69,9 +67,9 @@ export default function TemplatesPlaceholder() {
         {/* Templates */}
         <div className="flex flex-wrap justify-center gap-12 px-6 md:px-16 mt-10 mb-20">
           {templates.map(template => (
-            <Link key={template.id} href={`/free-resume?template=${template.id}`} className="block">
+            <a key={template.id} href={`/free-resume?template=${template.id}`} className="block">
               <ResumeCard {...template} />
-            </Link>
+            </a>
           ))}
         </div>
 
@@ -84,7 +82,7 @@ export default function TemplatesPlaceholder() {
                 index === currentIndex ? 'fade-zoom-in' : 'fade-out'
               }`}
             >
-              <Image
+              <img
                 src={resume}
                 alt={`Resume Template ${index + 1}`}
                 width={220}
@@ -99,7 +97,7 @@ export default function TemplatesPlaceholder() {
       </div>
 
       {/* Animations */}
-      <style jsx>{`
+      <style>{`
         @keyframes gradientAnimation {
           0% {
             background-position: 0% 50%;
@@ -178,7 +176,7 @@ function ResumeCard({
         }`}
       />
       <div className="relative z-10 w-[340px] h-[450px] flex justify-center items-center mt-6">
-        <Image
+        <img
           src={image}
           alt={name}
           width={340}

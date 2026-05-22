@@ -14,18 +14,24 @@ export const metadata: Metadata = {
   ],
 };
 
+function ClerkWrap({ children }: { children: React.ReactNode }) {
+  const key = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+  if (!key) return <>{children}</>;
+  return <ClerkProvider>{children}</ClerkProvider>;
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <ClerkProvider>
+    <ClerkWrap>
       <html lang="en" className={`${GeistSans.variable}`}>
         <body className="bg-gray-100">
-          <SessionProvider> {/* ✅ Wrap here */}
+          <SessionProvider>
             <TRPCReactProvider>{children}</TRPCReactProvider>
           </SessionProvider>
         </body>
       </html>
-    </ClerkProvider>
+    </ClerkWrap>
   );
 }
