@@ -15,8 +15,8 @@ Welcome to the official repository for our **COSC 4P02 Group Project**: ResumeX,
 ---
 
 ## 🔀 Fork & Deployment Notice
-This repository is a fork of the original team project repo maintained by
-[@RohittPillai](https://github.com/RohittPillai/COSC-4P02-PROJECT).
+This repository is a fork of the original team project repo maintained at:
+[https://github.com/RohittPillai/COSC-4P02-PROJECT](https://github.com/RohittPillai/COSC-4P02-PROJECT).
 The original repo contains the full collaborative history and contributions from all our team members.
 This fork was created to resolve minor deployment issues and host the live demo on Vercel.
 All core development credit belongs to our original team.
