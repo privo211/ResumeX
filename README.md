@@ -14,6 +14,15 @@ Welcome to the official repository for our **COSC 4P02 Group Project**: ResumeX,
 
 ---
 
+## 🔀 Fork & Deployment Notice
+This repository is a fork of the original team project repo maintained by
+[@RohittPillai](https://github.com/RohittPillai/COSC-4P02-PROJECT).
+The original repo contains the full collaborative history and contributions from all our team members.
+This fork was created to resolve minor deployment issues and host the live demo on Vercel.
+All core development credit belongs to our original team.
+
+---
+
 ## 📝 Project Description
 
 This project aims to build a **smart and intuitive resume builder** that leverages AI to assist users in creating job-specific, ATS-friendly resumes. Users can choose from pre-designed templates, fill in their details using guided input fields, and export polished resumes in PDF format. Premium features include:
@@ -72,15 +81,4 @@ The platform was developed over 4 agile sprints using the **T3 Stack** (Next.js,
 
 ## 📁 Project Documents
 
-Project documents are located in the [`/docs`](./docs) folder, including the 
-[AI Declaration Form](https://github.com/RohittPillai/COSC-4P02-PROJECT/blob/main/docs/AI%20Declaration%20Form/AI_Declaration_Form.pdf).
-
----
-
-## 🧪 Getting Started
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/rohittpillai/COSC-4P02-PROJECT.git
-cd COSC-4P02-PROJECT
+Project documents are located in the [`/docs`](./docs) folder.
